@@ -540,13 +540,6 @@ div.innerHTML = "<div style=\"font-size: 28px;color:rgb(255, 215, 0);text-align:
                 document.close();
                 if(idb) setTimeout(function(){localStorage.setItem('__title__',document.title)},1000) 
                 if(full) setTimeout(Fullscreen,1000);
-                if(vc) {
-                    setTimeout(function(){
-                       var script = document.createElement('script');
-                       script.src = "Cheat_Menu.js"
-                       document.head.appendChild(script);
-                    },1000);
-                }
                 if(keyb) visualkey()
                 if(fanti) {
                     var obj1={}
@@ -573,6 +566,18 @@ div.innerHTML = "<div style=\"font-size: 28px;color:rgb(255, 215, 0);text-align:
                         t =t && t.toString().split("").map(function(a){return obj1[a]||a}).join("")
                             return this.n_measureText(t);
                         }
+                }
+                if(vc) {
+                    function START(i){
+                        if(typeof document.body !== "undefined"  && typeof DataManager !== "undefined" || i > 50){
+                            var script = document.createElement('script');
+                            script.src = "Cheat_Menu.js"
+                            __appendChild.call(document.body,script);
+                        }else{
+                            setTimeout(START,500,i+1);
+                        }
+                    }
+                    START(0)
                 }
             }
             function pipe(fn, ele, a) {
